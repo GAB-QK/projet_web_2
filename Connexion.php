@@ -28,22 +28,24 @@ spl_autoload_register("loadClass");
 $userController = new UserController();
 
 if ($_POST) {
+  $valid_account = 0;
   $users = $userController->readAll();
   foreach ($users as $user) {
-    var_dump($_POST["username"] == $user->getUsername());
-    var_dump(password_verify($_POST["password"], $user->getPassword()));
     if ($_POST["username"] == $user->getUsername() && password_verify($_POST["password"], $user->getPassword())) {
       $_SESSION["username"] = $user->getUsername();
       $_SESSION["email"] = $user->getEmail();
       $_SESSION["id"] = $user->getId();
+      $valid_account = 1;
       echo "<script>window.location.href = './readAll.php'</script>";
-    } else {
-      echo "faux creds";
-      //echo ("<script>alert('vos identifiant sont incorect') </script> ") ; // erreur sur execution du else avec alert à revoir fonctionne avec 
-      //echo "<script>window.location.href = './Connexion.php'</script>";    // un eco lambda pourtant 
     }
+    //echo ("<script>alert('vos identifiant sont incorect') </script> ") ; // erreur sur execution du else avec alert à revoir fonctionne avec 
+    //echo "<script>window.location.href = './Connexion.php'</script>";    // un eco lambda pourtant 
+  }
+  if ($valid_account == 0) {
+    echo "faux creds";
   }
 }
+
 ?>
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light d-flex justify-content-center">
