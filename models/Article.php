@@ -91,15 +91,4 @@ class Article
                 return $this;
         }
 
-        public function getLien_image()
-        {
-                return $this->lien_image;
-        }
-
-        public function setLien_image($lien_image)
-        {
-                $this->lien_image = $lien_image;
-
-                return $this;
-        }
 }

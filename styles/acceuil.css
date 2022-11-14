@@ -10,7 +10,6 @@ body {
   margin-top : 2%;
 }
 
-
 .logo{
   max-height: 100px;
   margin-left : 2%;
@@ -19,9 +18,9 @@ body {
 
 .ml3 {
   font-weight: 900;
-  font-size: 10.0em;
+  font-size: 200%;
   color: rgb(240, 217, 10);
-  margin-left : 50px;
+  margin-left: 2%;
 }
 
 .dot-stretching {

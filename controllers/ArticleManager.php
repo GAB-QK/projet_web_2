@@ -25,13 +25,12 @@ class ArticleManager
 
     public function add(Article $article)
     {
-        $req = $this->db->prepare("INSERT INTO `poste` (title, content, created_at, author, lien_image, id_user) VALUES(:title, :content, :created_at, :author, :lien_image, :id_user)");
+        $req = $this->db->prepare("INSERT INTO `poste` (title, content, created_at, author, id_user) VALUES(:title, :content, :created_at, :author, :id_user)");
         
         $req->bindValue(":title", $article->getTitle(), PDO::PARAM_STR);
         $req->bindValue(":content", $article->getContent(), PDO::PARAM_STR);
         $req->bindValue(":created_at", date("Y-m-d H:i:s"), PDO::PARAM_STR);
         $req->bindValue(":author", $article->getAuthor(), PDO::PARAM_STR);
-        $req->bindValue(":lien_image", $article->getLien_image(), PDO::PARAM_STR);
         $req->bindValue(":id_user", $article->getId_user(), PDO::PARAM_INT);
 
         $req->execute();
@@ -40,14 +39,13 @@ class ArticleManager
 
     public function update(Article $article)
     {
-        $req = $this->db->prepare("UPDATE `poste` SET title = :title, content = :content, created_at = :created_at, author = :author, lien_image = :lien_image id_user= :id_user WHERE id = :id");
+        $req = $this->db->prepare("UPDATE `poste` SET title = :title, content = :content, created_at = :created_at, author = :author, id_user= :id_user WHERE id = :id");
 
         $req->bindValue(":id", $article->getId(), PDO::PARAM_INT);
         $req->bindValue(":title", $article->getTitle(), PDO::PARAM_STR);
         $req->bindValue(":content", $article->getContent(), PDO::PARAM_STR);
         $req->bindValue(":created_at", date("Y-m-d H:i:s"), PDO::PARAM_STR);
         $req->bindValue(":author", $article->getAuthor(), PDO::PARAM_STR);
-        $req->bindValue(":lien_image", $article->getLien_image(), PDO::PARAM_STR);
         $req->bindValue(":id_user", $article->getId_user(), PDO::PARAM_INT);
 
         $req->execute();
