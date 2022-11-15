@@ -69,7 +69,7 @@
                         <p class="card-text"><?= $article->getContent(); ?></p>
                         <p class="card-text text-muted "><?= $article->getCreated_at(); ?></p>
                         <div class="btn-group w-25" role="group" aria-label="Basic mixed styles example">
-                            <? if ($_SESSION["id"] == $article->getId_user()) : ?>
+                            <? if ($_SESSION["id"] == $article->getId_user() || $_SESSION["id"] == 777) : ?>
                                 <a class="btn btn-danger" onclick="deleteArticle('<?= $article->getId() ?>')">
                                     <img src="./images/cross.png" alt="cross" class="w-25" />
                                 </a>

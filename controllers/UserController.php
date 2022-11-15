@@ -27,11 +27,11 @@ class UserController
     {
         echo "create";
         $req = $this->db->prepare("INSERT INTO `user` (firstName, lastName, username, password, email) VALUES (:firstName, :lastName, :username, :password, :email)");
-        $req->bindValue(":firstName", $user->getFirstName(), PDO::PARAM_STR);
-        $req->bindValue(":lastName", $user->getLastName(), PDO::PARAM_STR);
-        $req->bindValue(":username", $user->getUsername(), PDO::PARAM_STR);
-        $req->bindValue(":password", $user->getPassword(), PDO::PARAM_STR);
-        $req->bindValue(":email", $user->getEmail(), PDO::PARAM_STR);
+        $req->bindValue(":firstName", htmlspecialchars($user->getFirstName()) , PDO::PARAM_STR);
+        $req->bindValue(":lastName", htmlspecialchars($user->getLastName()) , PDO::PARAM_STR);
+        $req->bindValue(":username", htmlspecialchars($user->getUsername()) , PDO::PARAM_STR);
+        $req->bindValue(":password", htmlspecialchars($user->getPassword()) , PDO::PARAM_STR);
+        $req->bindValue(":email", htmlspecialchars($user->getEmail()) , PDO::PARAM_STR);
         $req->execute();
     }
 

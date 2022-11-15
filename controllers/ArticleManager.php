@@ -27,11 +27,11 @@ class ArticleManager
     {
         $req = $this->db->prepare("INSERT INTO `poste` (title, content, created_at, author, id_user) VALUES(:title, :content, :created_at, :author, :id_user)");
         
-        $req->bindValue(":title", $article->getTitle(), PDO::PARAM_STR);
-        $req->bindValue(":content", $article->getContent(), PDO::PARAM_STR);
-        $req->bindValue(":created_at", date("Y-m-d H:i:s"), PDO::PARAM_STR);
-        $req->bindValue(":author", $article->getAuthor(), PDO::PARAM_STR);
-        $req->bindValue(":id_user", $article->getId_user(), PDO::PARAM_INT);
+        $req->bindValue(":title", htmlspecialchars($article->getTitle()), PDO::PARAM_STR);
+        $req->bindValue(":content", $article->getContent() , PDO::PARAM_STR);
+        $req->bindValue(":created_at", htmlspecialchars(date("Y-m-d H:i:s")) , PDO::PARAM_STR);
+        $req->bindValue(":author", htmlspecialchars($article->getAuthor()) , PDO::PARAM_STR);
+        $req->bindValue(":id_user", htmlspecialchars($article->getId_user()) , PDO::PARAM_INT);
 
         $req->execute();
 
@@ -41,11 +41,11 @@ class ArticleManager
     {
         $req = $this->db->prepare("UPDATE `poste` SET title = :title, content = :content, created_at = :created_at, author = :author, id_user= :id_user WHERE id = :id");
 
-        $req->bindValue(":id", $article->getId(), PDO::PARAM_INT);
-        $req->bindValue(":title", $article->getTitle(), PDO::PARAM_STR);
-        $req->bindValue(":content", $article->getContent(), PDO::PARAM_STR);
-        $req->bindValue(":created_at", date("Y-m-d H:i:s"), PDO::PARAM_STR);
-        $req->bindValue(":author", $article->getAuthor(), PDO::PARAM_STR);
+        $req->bindValue(":id", htmlspecialchars($article->getId()) , PDO::PARAM_INT);
+        $req->bindValue(":title", htmlspecialchars($article->getTitle()) , PDO::PARAM_STR);
+        $req->bindValue(":content", htmlspecialchars($article->getContent()) , PDO::PARAM_STR);
+        $req->bindValue(":created_at", htmlspecialchars(date("Y-m-d H:i:s")) , PDO::PARAM_STR);
+        $req->bindValue(":author", htmlspecialchars($article->getAuthor()) , PDO::PARAM_STR);
         $req->bindValue(":id_user", $article->getId_user(), PDO::PARAM_INT);
 
         $req->execute();

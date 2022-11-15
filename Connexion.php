@@ -42,7 +42,7 @@ if ($_POST) {
     //echo "<script>window.location.href = './Connexion.php'</script>";    // un eco lambda pourtant 
   }
   if ($valid_account == 0) {
-    echo "faux creds";
+    echo "<script>alert('identifiants eronnés')</script>";
   }
 }
 
